@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>活着 | 名著讲解短片</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:"Microsoft Yahei", SimSun, serif;
+            scroll-behavior: smooth; /*点击目录，平滑滚动跳转*/
+        }
+        body{
+            background-color:#24211d;
+            color:#e8dfd0;
+        }
+        /* ==========顶部导航目录 ========== */
+        nav{
+            position:fixed;
+            top:0;
+            width:100%;
+            padding:22px 50px;
+            display:flex;
+            justify-content:flex-end;
+            gap:30px;
+            background:linear-gradient(to bottom, rgba(36,33,29,0.9), transparent);
+            z-index:99;
+        }
+        nav a{
+            color:#e8dfd0;
+            text-decoration:none;
+            font-size:15px;
+            opacity:0.75;
+            transition:0.3s;
+        }
+        nav a:hover{
+            opacity:1;
+            color:#d4af37;
+        }
+
+        /* ==========首屏全屏封面（占满一整个屏幕） ========== */
+        .hero{
+            height:100vh;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+            padding:0 20px;
+            background-image: radial-gradient(rgba(210,180,140,0.08), transparent 70%);
+        }
+        .hero .en-title{
+            font-size:16px;
+            letter-spacing:4px;
+            color:#c4a87c;
+            margin-bottom:16px;
+        }
+        .hero h1{
+            font-size:72px;
+            color:#f0e6d6;
+            font-weight:normal;
+            margin-bottom:20px;
+        }
+        .hero .subtitle{
+            font-size:20px;
+            opacity:0.8;
+            margin-bottom:40px;
+        }
+        .hero .scroll-tip{
+            position:absolute;
+            bottom:40px;
+            font-size:14px;
+            opacity:0.6;
+        }
+
+        /* ==========通用板块样式 + 滚动渐入动画 ========== */
+        section{
+            min-height:100vh;
+            padding:80px 50px;
+            max-width:1100px;
+            margin:0 auto;
+            opacity:0;
+            transform:translateY(40px);
+            transition:all 0.8s ease;
+        }
+        section.show{
+            opacity:1;
+            transform:translateY(0);
+        }
+        section h2{
+            font-size:36px;
+            color:#f0e6d6;
+            margin-bottom:30px;
+            font-weight:normal;
+            border-left:4px solid #c4a87c;
+            padding-left:16px;
+        }
+
+        /* 书籍简介板块 */
+        .info-block{
+            margin-bottom:18px;
+            font-size:17px;
+            line-height:1.7;
+        }
+        .info-block strong{
+            color:#d4af37;
+        }
+
+        /* 视频板块 */
+        video{
+            width:100%;
+            border-radius:12px;
+            margin-top:20px;
+        }
+
+        /* 分镜项目：图片+文案+提示词 */
+        .story-item{
+            margin:50px 0;
+        }
+        .story-item img{
+            width:100%;
+            border-radius:12px;
+            margin-bottom:14px;
+        }
+        .story-item .desc{
+            font-size:16px;
+            opacity:0.85;
+            line-height:1.6;
+            margin-bottom:8px;
+        }
+        .story-item .prompt{
+            background:rgba(255,255,255,0.07);
+            padding:12px 16px;
+            border-radius:8px;
+            font-size:14px;
+            opacity:0.75;
+        }
+
+        /* 小结板块 */
+        .summary-text{
+            font-size:18px;
+            line-height:1.8;
+            opacity:0.88;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航索引菜单 -->
+    <nav>
+        <a href="#intro">书籍介绍</a>
+        <a href="#video">完整视频</a>
+        <a href="#storyboard">分镜画面</a>
+        <a href="#summary">小结</a>
+    </nav>
+
+    <!-- 首屏全屏封面 -->
+    <div class="hero">
+        <div class="en-title">THE LIVING</div>
+        <h1>活着</h1>
+        <p class="subtitle">人是为活着本身而活着，而不是为活着之外的任何事物所活着</p>
+        <div class="scroll-tip">向下滑动继续浏览</div>
+    </div>
+
+    <!-- 板块1：书籍简介 -->
+    <section id="intro">
+        <h2>作品简介</h2>
+        <div class="info-block"><strong>书名：</strong>《活着》</div>
+        <div class="info-block"><strong>作者：</strong>余华</div>
+        <div class="info-block"><strong>故事背景：</strong>从民国到改革开放数十年乡土中国，历经时代动荡。</div>
+        <div class="info-block"><strong>故事概要：</strong>富家少爷福贵嗜赌败光家产，接连遭遇亲人相继离去的苦难，晚年只剩一头老牛相伴，平静地继续活着。作品讲述苦难之下生命本身坚韧的力量。</div>
+    </section>
+
+    <!--板块2：完整成片视频 -->
+    <section id="video">
+        <h2>名著讲解短片</h2>
+        <p>完整成片视频</p>
+        <video controls>
+            <source src="full.mp4" type="video/mp4">
+        </video>
+    </section>
+
+    <!--板块3：分镜画面、描述、AI提示词 -->
+    <section id="storyboard">
+        <h2>分镜画面</h2>
+        <!-- 第1组分镜，复制整块增加更多镜头 -->
+        <div class="story-item">
+            <img src="img1.jpg">
+            <p class="desc">画面描述：福贵年轻时在赌场，沉迷赌博，挥霍家产。</p>
+            <div class="prompt">AI生成提示词：写实电影镜头，暗调泥土质感，民国乡村赌场，青木色调，电影柔光，8k，《活着》，福贵赌博</div>
+        </div>
+        <div class="story-item">
+            <img src="img2.jpg">
+            <p class="desc">画面描述：家道败落之后，福贵站在破败老宅门前。</p>
+            <div class="prompt">AI生成提示词：写实电影画面，黄昏，老旧土屋，暗沉乡土色调，安静压抑，电影质感</div>
+        </div>
+    </section>
+
+    <!--板块4：小结 -->
+    <section id="summary">
+        <h2>项目小结</h2>
+        <p class="summary-text">
+本项目选取《活着》中福贵人生的关键节点，利用AI生成分镜画面，剪辑制作名著讲解短片。在一幕幕影像之中，体会余华笔下，生命本身的力量。苦难层层叠加，但人依旧选择活着。
+        </p>
+    </section>
+
+<!-- JS代码：实现滚动渐显动画，不用修改 -->
+<script>
+const sections = document.querySelectorAll("section");
+function checkScroll(){
+    sections.forEach(sec=>{
+        const rect = sec.getBoundingClientRect();
+        if(rect.top < window.innerHeight *0.75){
+            sec.classList.add("show");
+        }
+    })
+}
+window.addEventListener("scroll", checkScroll);
+window.addEventListener("load", checkScroll);
+</script>
+</body>
+</html>

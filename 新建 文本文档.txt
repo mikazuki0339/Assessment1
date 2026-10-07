@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>《活着》名著短片</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", SimSun, serif;
+        }
+        body {
+            background-color: #24211d;
+            background-image: radial-gradient(rgba(210,180,140,0.06), transparent 65%);
+            color: #e8dfd0;
+            padding: 60px 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        /* 顶部小字标签 */
+        .top-label {
+            font-size: 14px;
+            opacity: 0.6;
+            letter-spacing:1px;
+            margin-bottom:14px;
+        }
+        /* 页面大标题 */
+        h1 {
+            font-size: 46px;
+            line-height: 1.4;
+            margin-bottom:20px;
+            color:#f0e6d6;
+        }
+        /* 项目简介 */
+        .intro{
+            font-size:17px;
+            opacity:0.85;
+            line-height:1.7;
+            margin-bottom:40px;
+        }
+        /* 板块小标题 */
+        h2{
+            font-size:30px;
+            font-weight:normal;
+            margin:60px 0 20px;
+        }
+        /* 视频样式 */
+        video{
+            width:100%;
+            border-radius:12px;
+            margin-bottom:20px;
+        }
+        /* 单张图片+文案容器 */
+        .story-item{
+            margin:40px 0;
+        }
+        .story-item img{
+            width:100%;
+            border-radius:12px;
+            margin-bottom:12px;
+        }
+        .story-item p{
+            font-size:16px;
+            opacity:0.8;
+            line-height:1.6;
+        }
+    </style>
+</head>
+<body>
+    <!-- 页面顶部 -->
+    <div class="top-label">名著讲解短片 · AI影像创作</div>
+    <h1>土地漫长，生命坚韧<br>《活着》短片创作</h1>
+    <p class="intro">
+本短片基于余华《活着》原著，选取福贵人生关键节点，使用AI生成画面，剪辑制作名著讲解短片，讲述苦难之中生命本身的力量。
+    </p>
+
+    <!-- 完整成片视频 -->
+    <h2>完整成片</h2>
+    <video controls>
+        <source src="full.mp4" type="video/mp4">
+    </video>
+
+    <!-- 分镜图片+对应文案，在这里添加你的图片和文字 -->
+    <h2>分镜画面</h2>
+    <div class="story-item">
+        <img src="img1.jpg">
+        <p>【画面文案】福贵年少在赌场沉迷赌博，挥霍家产。</p>
+    </div>
+    <div class="story-item">
+        <img src="img2.jpg">
+        <p>【画面文案】赌输全部家产，家道败落，福贵迎来人生转折。</p>
+    </div>
+    <div class="story-item">
+        <img src="img3.jpg">
+        <p>【画面文案】晚年的福贵，与老牛相伴，平静活着。</p>
+    </div>
+
+</body>
+</html>
