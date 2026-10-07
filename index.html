@@ -1,190 +1,308 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>活着 | 名著讲解短片</title>
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:"Microsoft Yahei", SimSun, serif;
-            scroll-behavior: smooth; /*点击目录，平滑滚动跳转*/
-        }
-        body{
-            background-color:#24211d;
-            color:#e8dfd0;
-        }
-        /* ==========顶部导航目录 ========== */
-        nav{
-            position:fixed;
-            top:0;
-            width:100%;
-            padding:22px 50px;
-            display:flex;
-            justify-content:flex-end;
-            gap:30px;
-            background:linear-gradient(to bottom, rgba(36,33,29,0.9), transparent);
-            z-index:99;
-        }
-        nav a{
-            color:#e8dfd0;
-            text-decoration:none;
-            font-size:15px;
-            opacity:0.75;
-            transition:0.3s;
-        }
-        nav a:hover{
-            opacity:1;
-            color:#d4af37;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>活着 | 名著讲解短片</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Microsoft Yahei", SimSun, serif;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        background-color: #24211d;
+        color: #e8dfd0;
+    }
+
+    /* 顶部导航 */
+    nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 16px 40px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 24px;
+        background: linear-gradient(to bottom, rgba(36, 33, 29, 0.92), transparent);
+        z-index: 99;
+    }
+
+    nav a {
+        color: #e8dfd0;
+        text-decoration: none;
+        font-size: 14px;
+        opacity: 0.75;
+        transition: 0.3s;
+    }
+
+    nav a:hover {
+        opacity: 1;
+        color: #d4af37;
+    }
+
+    /* 首屏封面：标题字幕更大 */
+    .hero {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 0 24px;
+        background-image: radial-gradient(rgba(210, 180, 140, 0.08), transparent 70%);
+    }
+
+    .hero .en-title {
+        font-size: 18px;
+        letter-spacing: 6px;
+        color: #c4a87c;
+        margin-bottom: 24px;
+    }
+
+    .hero h1 {
+        font-size: 96px;
+        color: #f0e6d6;
+        font-weight: normal;
+        margin-bottom: 28px;
+    }
+
+    .hero .subtitle {
+        font-size: 24px;
+        opacity: 0.85;
+        margin-bottom: 48px;
+        max-width: 700px;
+        line-height: 1.6;
+    }
+
+    .hero .scroll-tip {
+        position: absolute;
+        bottom: 40px;
+        font-size: 14px;
+        opacity: 0.6;
+    }
+
+    /* 通用内容区 */
+    section {
+        padding: 60px 40px;
+        max-width: 1100px;
+        margin: 0 auto 60px auto;
+    }
+
+    section h2 {
+        font-size: 34px;
+        color: #f0e6d6;
+        margin-bottom: 24px;
+        font-weight: normal;
+        border-left: 4px solid #c4a87c;
+        padding-left: 16px;
+    }
+
+    /* 正文更紧凑 */
+    .info-block {
+        margin-bottom: 12px;
+        font-size: 16px;
+        line-height: 1.65;
+    }
+
+    .info-block strong {
+        color: #d4af37;
+    }
+
+    /* 视频区 */
+    .video-area p {
+        font-size: 16px;
+        margin-bottom: 14px;
+        opacity: 0.85;
+    }
+
+    video {
+        width: 100%;
+        border-radius: 12px;
+    }
+
+    /* 左右分栏：图片左，文字右 */
+    .story-item {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+        align-items: center;
+        margin-bottom: 28px;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 12px;
+    }
+
+    .story-item img {
+        width: 100%;
+        border-radius: 10px;
+        display: block;
+    }
+
+    .story-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .story-item .desc {
+        font-size: 15px;
+        line-height: 1.6;
+        margin-bottom: 10px;
+        opacity: 0.88;
+    }
+
+    .story-item .prompt {
+        background: rgba(255, 255, 255, 0.07);
+        padding: 10px 14px;
+        border-radius: 8px;
+        font-size: 13px;
+        line-height: 1.55;
+        opacity: 0.78;
+    }
+
+    /* 小结 */
+    .summary-text {
+        font-size: 17px;
+        line-height: 1.75;
+        opacity: 0.88;
+    }
+
+    /* 移动端适配：小屏幕恢复上下排列 */
+    @media (max-width: 768px) {
+        nav {
+            padding: 14px 20px;
+            gap: 14px;
         }
 
-        /* ==========首屏全屏封面（占满一整个屏幕） ========== */
-        .hero{
-            height:100vh;
-            display:flex;
-            flex-direction:column;
-            justify-content:center;
-            align-items:center;
-            text-align:center;
-            padding:0 20px;
-            background-image: radial-gradient(rgba(210,180,140,0.08), transparent 70%);
-        }
-        .hero .en-title{
-            font-size:16px;
-            letter-spacing:4px;
-            color:#c4a87c;
-            margin-bottom:16px;
-        }
-        .hero h1{
-            font-size:72px;
-            color:#f0e6d6;
-            font-weight:normal;
-            margin-bottom:20px;
-        }
-        .hero .subtitle{
-            font-size:20px;
-            opacity:0.8;
-            margin-bottom:40px;
-        }
-        .hero .scroll-tip{
-            position:absolute;
-            bottom:40px;
-            font-size:14px;
-            opacity:0.6;
+        .hero h1 {
+            font-size: 64px;
         }
 
-        /* ==========通用板块样式 + 滚动渐入动画 ========== */
-        section{
-            min-height:100vh;
-            padding:80px 50px;
-            max-width:1100px;
-            margin:0 auto;
-            opacity:0;
-            transform:translateY(40px);
-            transition:all 0.8s ease;
-        }
-        section.show{
-            opacity:1;
-            transform:translateY(0);
-        }
-        section h2{
-            font-size:36px;
-            color:#f0e6d6;
-            margin-bottom:30px;
-            font-weight:normal;
-            border-left:4px solid #c4a87c;
-            padding-left:16px;
+        .hero .subtitle {
+            font-size: 20px;
         }
 
-        /* 书籍简介板块 */
-        .info-block{
-            margin-bottom:18px;
-            font-size:17px;
-            line-height:1.7;
-        }
-        .info-block strong{
-            color:#d4af37;
+        section {
+            padding: 50px 20px;
         }
 
-        /* 视频板块 */
-        video{
-            width:100%;
-            border-radius:12px;
-            margin-top:20px;
+        .story-item {
+            grid-template-columns: 1fr;
+            gap: 16px;
         }
-
-        /* 分镜项目：图片+文案+提示词 */
-        .story-item{
-            margin:50px 0;
-        }
-        .story-item img{
-            width:100%;
-            border-radius:12px;
-            margin-bottom:14px;
-        }
-        .story-item .desc{
-            font-size:16px;
-            opacity:0.85;
-            line-height:1.6;
-            margin-bottom:8px;
-        }
-        .story-item .prompt{
-            background:rgba(255,255,255,0.07);
-            padding:12px 16px;
-            border-radius:8px;
-            font-size:14px;
-            opacity:0.75;
-        }
-
-        /* 小结板块 */
-        .summary-text{
-            font-size:18px;
-            line-height:1.8;
-            opacity:0.88;
-        }
-    </style>
+    }
+</style>
 </head>
-<body>
-    <!-- 导航索引菜单 -->
-    <nav>
-        <a href=" ">书籍介绍</a >
-        <a href="#video">完整视频</a >
-        <a href="#storyboard">分镜画面</a >
-        <a href="#summary">小结</a >
-    </nav>
 
-    <!-- 首屏全屏封面 -->
-    <div class="hero">
-        <div class="en-title">THE LIVING</div>
-        <h1>活着</h1>
-        <p class="subtitle">人是为活着本身而活着，而不是为活着之外的任何事物所活着</p >
-        <div class="scroll-tip">向下滑动继续浏览</div>
+<body>
+
+<nav>
+    <a href="#intro">书籍介绍</a>
+    <a href="#video">完整视频</a>
+    <a href="#storyboard">分镜画面</a>
+    <a href="#summary">小结</a>
+</nav>
+
+<div class="hero">
+    <div class="en-title">THE LIVING</div>
+    <h1>活着</h1>
+    <p class="subtitle">人是为活着本身而活着，而不是为活着之外的任何事物所活着</p>
+    <div class="scroll-tip">向下滑动继续浏览</div>
+</div>
+
+<section id="intro">
+    <h2>作品简介</h2>
+
+    <div class="info-block"><strong>书名：</strong>《活着》</div>
+    <div class="info-block"><strong>作者：</strong>余华</div>
+    <div class="info-block"><strong>故事背景：</strong>从民国到改革开放数十年乡土中国，历经时代动荡。</div>
+    <div class="info-block"><strong>故事概要：</strong>富家少爷福贵嗜赌败光家产，接连遭遇亲人相继离去的苦难，晚年只剩一头老牛相伴，平静地继续活着。作品讲述苦难之下生命本身坚韧的力量。</div>
+</section>
+
+<section id="video" class="video-area">
+    <h2>名著讲解短片</h2>
+    <p>完整成片视频</p>
+
+    <video controls>
+        <source src="huozhe.mp4" type="video/mp4" />
+        你的浏览器不支持视频播放
+    </video>
+</section>
+
+<section id="storyboard">
+    <h2>分镜画面</h2>
+
+    <div class="story-item">
+        <img src="huozhe1.jpg" alt="分镜1" />
+        <div class="story-text">
+            <p class="desc">《活着》是余华的经典著作，书写普通人坎坷苦难的一生。</p>
+            <div class="prompt">AI生成提示词：一本名为活着的书放置在窗台上，柔和自然光，安静氛围感，写实胶片质感，低饱和度，8K</div>
+        </div>
     </div>
 
-    <!-- 板块1：书籍简介 -->
-    <section id="intro">
-        <h2>作品简介</h2>
-        <div class="info-block"><strong>书名：</strong>《活着》</div>
-        <div class="info-block"><strong>作者：</strong>余华</div>
-        <div class="info-block"><strong>故事背景：</strong>从民国到改革开放数十年乡土中国，历经时代动荡。</div>
-        <div class="info-block"><strong>故事概要：</strong>富家少爷福贵嗜赌败光家产，接连遭遇亲人相继离去的苦难，晚年只剩一头老牛相伴，平静地继续活着。作品讲述苦难之下生命本身坚韧的力量。</div>
-    </section>
+    <div class="story-item">
+        <img src="huozhe2.jpg" alt="分镜2" />
+        <div class="story-text">
+            <p class="desc">富家少爷福贵年少纨绔荒唐，赌光家产彻底败落，家境落魄。</p>
+            <div class="prompt">AI生成提示词：写实电影镜头，民国乡村赌场，纨绔青年，昏暗环境，胶片质感，暗调泥土色调，8k</div>
+        </div>
+    </div>
 
-    <!--板块2：完整成片视频（文件名huozhe.mp4） -->
-    <section id="video">
-        <h2>名著讲解短片</h2>
-        <p>完整成片视频</p >
-        <video controls>
-            <source src="huozhe.mp4" type="video/mp4">
-        </video>
-    </section>
+    <div class="story-item">
+        <img src="huozhe3.jpg" alt="分镜3" />
+        <div class="story-text">
+            <p class="desc">命运接连降下磨难，战乱贫困裹挟着福贵艰难求生度日。</p>
+            <div class="prompt">AI生成提示词：写实电影镜头，阴天乡间土路，衣衫朴素的福贵，战乱年代，低饱和度乡土光影，电影长镜头，8k</div>
+        </div>
+    </div>
 
-    <!--板块3：分镜画面，一共7张 huozhe1 ~ huozhe7.jpg，文案全部按你给的修改完毕 -->
-    <section id="storyboard">
-        <h2>分镜画面</h2>
-        <!-- huozhe1 -->
-        <div class="story-item">
-            < img src="huozhe1.jpg">
-            <p cl
+    <div class="story-item">
+        <img src="huozhe4.jpg" alt="分镜4" />
+        <div class="story-text">
+            <p class="desc">他一生历经至亲离世，儿女、妻儿、亲人纷纷离他而去。</p>
+            <div class="prompt">AI生成提示词：写实电影画面，破旧农家院落，悲伤沉静氛围，暗调柔和侧光，乡土电影质感，8k</div>
+        </div>
+    </div>
+
+    <div class="story-item">
+        <img src="huozhe5.jpg" alt="分镜5" />
+        <div class="story-text">
+            <p class="desc">半生颠沛，一无所有，最后只剩老牛相伴孤身苟活于世。</p>
+            <div class="prompt">AI生成提示词：黄昏田野，老年福贵和老牛，安静悠远，泥土色调，电影宽画幅，氛围感强，8k</div>
+        </div>
+    </div>
+
+    <div class="story-item">
+        <img src="huozhe6.jpg" alt="分镜6" />
+        <div class="story-text">
+            <p class="desc">小说没有刻意渲染悲情，只是平铺普通人真实的苦难人生。</p>
+            <div class="prompt">AI生成提示词：民国乡村远景，安静乡土大地，柔和黄昏，克制沉静氛围，写实胶片质感，8k</div>
+        </div>
+    </div>
+
+    <div class="story-item">
+        <img src="huozhe7.jpg" alt="分镜7" />
+        <div class="story-text">
+            <p class="desc">活着本身即是意义，纵使万般疾苦也要坦然直面生活。</p>
+            <div class="prompt">AI生成提示词：田野远景，落日余晖，平静辽阔，温暖又苍凉，电影质感，低饱和，8k</div>
+        </div>
+    </div>
+</section>
+
+<section id="summary">
+    <h2>项目小结</h2>
+    <p class="summary-text">
+        本项目选取《活着》中福贵人生的关键节点，利用AI生成分镜画面，剪辑制作名著讲解短片。在一幕幕影像之中，体会余华笔下生命本身的力量。苦难层层叠加，但人依旧选择活着。
+    </p>
+</section>
+
+</body>
+</html>
